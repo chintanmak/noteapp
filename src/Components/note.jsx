@@ -11,10 +11,20 @@ constructor(props) {
     }
 }
 
+
+onDelete=async(del)=>{
+    alert(this.state.note_name);   
+    const result = await axios.post(`http://localhost:4000/app/delete-data/${del}`)
+    console.log(result);
+}
+
 onSubmit=async()=>{
     alert(this.state.note_name);
-    await axios.post(`http://localhost:4000/app/signup`, {note:this.state.note_name})
-    
+    const result = await axios.post(`http://localhost:4000/app/signup`, {note:this.state.note_name})
+    console.log(result);
+    if (result.status == 200){
+        this.getData();
+    }
 }
  
 getData=async()=>{
@@ -64,10 +74,18 @@ componentDidMount() {
                         this.state.data.length>0?
                         this.state.data.map(item=>(
                             <>
-
+                            <form className='table'>
                             <h4>
-                                {item.note} {'-'} {item.date.substr(0,10)}
+                                {item.note}
                             </h4>
+                            <h4>
+                            {item.date.substr(0,10)}
+                            </h4>
+                            <div>
+                            <button className='btns'>Update</button>
+                            <button onClick={()=>this.onDelete(item.note)} className='btns'>Delete</button>
+                            </div>
+                            </form>
                             
                             </>
 

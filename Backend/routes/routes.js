@@ -9,18 +9,18 @@ router.post('/signup', async(request, response)=>{
     try{
 
         const signedUpUser = await new signUpTemplateCopy({
-            note:request.body.note,
-            //request.body.phone
+            note:request.body.note            
         })
         signedUpUser.save()
         .then(data =>{
-            response.json(data)
+            response.sendStatus(200)
         })
         .catch(error =>{
-            response.json(error)
+            response.sendStatus(404)
         })
     }catch(err){
         console.log(err);
+        response.sendStatus(404)
     }
 
 })
@@ -56,37 +56,30 @@ router.get('/get-all-data', async(req,res)=>{
 })
 
 
-// router.post('/update-mail/:note', async(req,res)=>{
+router.post('/update-mail/:note', async(req,res)=>{
 
-//     try{
+    try{
 
-//         const data = await signUpTemplateCopy.findOneAndUpdate({
-//             note:req.params.note
-//         },{
-//             $set:{
-//                 email:'gvnxyz@mail.com'
-//             }
-//         });
+        const data = await signUpTemplateCopy.findOneAndUpdate({
+            note:req.params.note
+        },{
+            $set:{
+                note:''
+            }
+        });
 
-//         if(data){
-//             res.sendStatus(200);
-//         }
-//         res.sendStatus(404);
+        if(data){
+            res.sendStatus(200);
+        }
+        res.sendStatus(404);
         
-//     }catch(err){
-//         console.log(err);
-//         res.sendStatus(404);
-//     }
+    }catch(err){
+        console.log(err);
+        res.sendStatus(404);
+    }
 
-//     // {
-//     //     "_id": "61e7e2e4e8a037eebf3702d9",
-//     //     "fullName": "govind",
-//     //     "email": "smartk@hack.com",
-//     //     "phone": "987654321",
-//     //     "date": "2022-01-19T10:07:32.457Z",
-//     //     "__v": 0
-//     //   },
-// })
+
+})
 
 
 router.post('/delete-data/:note', async(req,res)=>{

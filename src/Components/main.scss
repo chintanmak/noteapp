@@ -68,11 +68,31 @@ html{
         border-radius:1rem;
         justify-content: space-between;
         background-color: aliceblue;
-        
-        & h4{
-            padding: 1rem 5rem;
-            color: black;
-            font-size: 2rem;
+   
+        & .table{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 1rem 5rem; 
+            & h4{
+                color: black;
+                font-size: 2rem;
+            }
+            & .btns{
+                background-color: blue;
+                color: white;
+                font-size: 1.5rem;
+                padding: 1rem;
+                margin: 0 0.5rem;
+                border-radius: 1rem;
+                border: 2px solid transparent;
+                width: 10rem;
+                cursor: pointer;
+            }
+            & .btns:hover{
+            background-color: rgb(87, 87, 255);
+    
+            }
         }
-    }
+        }
 }}
