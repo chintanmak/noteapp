@@ -64,8 +64,8 @@ export default class Note extends Component {
           </div>
         </div>
         {this.state.data.length > 0
-          ? this.state.data.map((item) => (
-              <NoteRowContainer reload={this.getData()} item={item} />
+          ? this.state.data.reverse().map((item) => (
+              <NoteRowContainer reload={()=>this.getData()} item={item} />
             ))
           : null}
       </div>
@@ -85,7 +85,7 @@ export class NoteRowContainer extends Component {
   }
 
   onDelete = async (del) => {
-    alert(this.state.note_name);
+    alert(del);
     const result = await axios.post(
       `http://localhost:4000/app/delete-data/${del}`
     );
@@ -93,17 +93,25 @@ export class NoteRowContainer extends Component {
   };
 
   onUpdate = async (newNote) => {
-    // alert(this.state.note_name);
+    // alert(this.state.updatednote_name);
+    const data = {
+      note:this.state.updatednote_name
+    }
     const result = await axios.post(
-      `http://localhost:4000/app/update-mail/${newNote}`
+      `http://localhost:4000/app/update-mail/${newNote}`,
+      data
     );
     console.log(result);
   };
 
+  componentDidMount() {
+      console.log(this.props.item);
+  }
+
   render() {
     const { item } = this.props;
     return (
-      <div>
+      <div className="note-page-container">
         <div className="note-main-section2">
           <>
             <form className="table">

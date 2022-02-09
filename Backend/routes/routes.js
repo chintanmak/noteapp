@@ -18,6 +18,7 @@ router.post('/signup', async(request, response)=>{
         .catch(error =>{
             response.sendStatus(404)
         })
+
     }catch(err){
         console.log(err);
         response.sendStatus(404)
@@ -64,14 +65,14 @@ router.post('/update-mail/:note', async(req,res)=>{
             note:req.params.note
         },{
             $set:{
-                note:req.params.note
+                note:req.body.note
             }
         });
 
         if(data){
             res.sendStatus(200);
         }
-        res.sendStatus(404);
+        else res.sendStatus(404);
         
     }catch(err){
         console.log(err);
@@ -93,7 +94,7 @@ router.post('/delete-data/:note', async(req,res)=>{
         if(data){
             res.json(data);
         }
-        res.sendStatus(404);
+        else res.sendStatus(404);
         
     }catch(err){
         console.log(err);
