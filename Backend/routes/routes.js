@@ -64,7 +64,7 @@ router.post('/update-mail/:note', async(req,res)=>{
             note:req.params.note
         },{
             $set:{
-                note:''
+                note:req.params.note
             }
         });
 
