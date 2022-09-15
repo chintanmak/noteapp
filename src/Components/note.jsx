@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./main.scss";
 import axios from "axios";
+import bg from './bg.jpg'
 
 export default class Note extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ export default class Note extends Component {
   render() {
     return (
       <div className="note-page-container">
+      <img src={bg} />
         <div className="note-app-header">
           <p>NOTE APP</p>
         </div>

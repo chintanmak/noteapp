@@ -17,7 +17,7 @@ router.post('/signup', async(request, response)=>{
         })
         .catch(error =>{
             response.sendStatus(404)
-        })
+        })  
 
     }catch(err){
         console.log(err);
@@ -25,6 +25,7 @@ router.post('/signup', async(request, response)=>{
     }
 
 })
+
 
 router.get('/get-data/:note', async(req,res)=>{
 
@@ -40,6 +41,7 @@ router.get('/get-data/:note', async(req,res)=>{
         console.log(err);
     }
 })
+
 
 router.get('/get-all-data', async(req,res)=>{
 
@@ -78,8 +80,6 @@ router.post('/update-mail/:note', async(req,res)=>{
         console.log(err);
         res.sendStatus(404);
     }
-
-
 })
 
 
